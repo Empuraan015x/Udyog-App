@@ -48,7 +48,16 @@ dependencies:
   csc_picker: ^0.2.6
   flutter_neumorphic: ^3.2.0
   animated_text_kit: ^4.2.2
-  
+  provider: ^6.0.3
+  like_button: ^2.0.4
+  intl: ^0.17.0
+  flutter_phone_direct_caller: ^2.1.1
+  url_launcher: ^6.1.5
+  search_page: ^2.0.0+1
+  shared_preferences: ^2.0.15
+  flutter_svg: ^1.1.5
+  firebase_messaging: ^13.0.2
+  flutter_local_notifications: ^11.0.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +79,12 @@ flutter:
   assets:
     - assets/images/Udyog.png
     - assets/images/location.jpg
+    - assets/images/profile.png
+    - assets/images/usericon.svg
+    - assets/images/notification.svg
+    - assets/images/settings.svg
+    - assets/images/question.svg
+    - assets/images/logout.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

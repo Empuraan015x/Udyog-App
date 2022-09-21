@@ -2,11 +2,13 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:geocoder/geocoder.dart';
+import 'package:provider/provider.dart';
+import 'package:udyog/provider/cat_provider.dart';
 import 'package:udyog/screens/location_screen.dart';
+import 'package:udyog/screens/product_list.dart';
 
 import 'package:udyog/screens/subscreens/ads.dart';
-import 'package:udyog/screens/subscreens/chats.dart';
-import 'package:udyog/screens/subscreens/profile.dart';
+import 'package:udyog/screens/profile/profile_screen.dart';
 import 'package:udyog/widgets/banner_widget.dart';
 import 'package:udyog/widgets/category_widget.dart';
 import 'package:udyog/widgets/custom_appBar.dart';
@@ -24,57 +26,38 @@ class _HomeScreenState extends State<HomeScreen> {
   String address = 'India';
   @override
   Widget build(BuildContext context) {
+    var _catProvider = Provider.of<CategoryProvider>(context);
+    _catProvider.getCategory(null);
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(56),
-          child: SafeArea(child: CustomAppBar())),
+          preferredSize: Size.fromHeight(100),
+          child: SafeArea(child: CustomAppBar(),),),
       // ignore: prefer_const_constructors
-      body: ListView(
-        children: [
-          Container(
-            color: Colors.white,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-              child: Row(
-                // ignore: prefer_const_literals_to_create_immutables
-                children: [
-                  Expanded(
-                    child: SizedBox(
-                      height: 40,
-                      child: TextField(
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
-                          labelText: 'Find Jobs',
-                          labelStyle: TextStyle(fontSize: 12),
-                          contentPadding: EdgeInsets.only(left: 10, right: 10),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(6)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  Icon(Icons.notifications_none),
-                  SizedBox(
-                    width: 10,
-                  ),
-                ],
+      body: SingleChildScrollView(
+        physics: ScrollPhysics(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              color: Colors.white,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+                child: Column(
+                  // ignore: prefer_const_literals_to_create_immutables
+                  children: [
+                    BannerWidget(),
+                    CategoryWidget(),
+                  ],
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
-            child: Column(
-              // ignore: prefer_const_literals_to_create_immutables
-              children: [
-                BannerWidget(),
-                CategoryWidget(),
-              ],
+            SizedBox(
+              height: 10,
             ),
-          ),
-        ],
+            ProductList(false),
+          ],
+        ),
       ),
     );
   }

@@ -24,7 +24,9 @@ class PhoneAuthService {
       return users.doc(user?.uid).set({
         'uid': user?.uid,
         'mobile': user?.phoneNumber,
-        'email': user?.email
+        'email': user?.email,
+        'name': null,
+        'address': null
       }).then((value) {
         //go to next screen
         Navigator.pushReplacementNamed(context, LocationScreen.id);

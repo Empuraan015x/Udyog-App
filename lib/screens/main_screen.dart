@@ -2,10 +2,12 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:udyog/screens/chat/chat.dart';
+import 'package:udyog/screens/chat/chatScreen.dart';
 import 'package:udyog/screens/home.dart';
+import 'package:udyog/screens/sellitems/seller_category_list.dart';
 import 'package:udyog/screens/subscreens/ads.dart';
-import 'package:udyog/screens/subscreens/chats.dart';
-import 'package:udyog/screens/subscreens/profile.dart';
+import 'package:udyog/screens/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static const String id = 'main-screen';
@@ -28,7 +30,9 @@ class _MainScreenState extends State<MainScreen> {
         bucket: _bucket,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, SellerCategory.id);
+        },
         child: CircleAvatar(
           backgroundColor: Colors.white,
           child: Icon(Icons.add),
@@ -76,7 +80,7 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         _index = 1;
-                        _currentScreen = ChatScreen();
+                        _currentScreen = ChatsHome();
                       });
                     },
                     child: Column(
@@ -133,7 +137,7 @@ class _MainScreenState extends State<MainScreen> {
                     onPressed: () {
                       setState(() {
                         _index = 3;
-                        _currentScreen = AccountScreen();
+                        _currentScreen = ProfileScreen();
                       });
                     },
                     child: Column(

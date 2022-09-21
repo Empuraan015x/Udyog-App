@@ -16,9 +16,10 @@ class ScreenSplash extends StatefulWidget {
 }
 
 class _ScreenSplashState extends State<ScreenSplash> {
+  Timer? timer;
   @override
   void initState() {
-    Timer(Duration(seconds: 3), () {
+    timer = Timer(Duration(seconds: 3), () {
       FirebaseAuth.instance.authStateChanges().listen((User? user) {
         if (user == null) {
           Navigator.pushReplacementNamed(context, ScreenLogin.id);
@@ -29,13 +30,6 @@ class _ScreenSplashState extends State<ScreenSplash> {
       });
     });
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    // ignore: todo
-    // TODO: implement didChangeDependencies
-    super.didChangeDependencies();
   }
 
   @override
@@ -54,8 +48,7 @@ class _ScreenSplashState extends State<ScreenSplash> {
 
   @override
   void dispose() {
-    // ignore: todo
-    // TODO: implement dispose
+    timer?.cancel();
     super.dispose();
   }
 

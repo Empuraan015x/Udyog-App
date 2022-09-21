@@ -61,7 +61,9 @@ class EmailAuthentication {
         return users.doc(credential.user?.uid).set({
           'uid': credential.user?.uid,
           'mobile': null,
-          'email': credential.user?.email
+          'email': credential.user?.email,
+          'name': null,
+          'address': null
         }).then((value) async {
           await credential.user?.sendEmailVerification().then((value) {
             Navigator.pushReplacementNamed(context, EmailVerificationScreen.id);

@@ -2,6 +2,9 @@
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:udyog/screens/main_screen.dart';
+
+import '../screens/sellitems/seller_category_list.dart';
 
 class BannerWidget extends StatelessWidget {
   const BannerWidget({Key? key}) : super(key: key);
@@ -86,7 +89,9 @@ class BannerWidget extends StatelessWidget {
                 children: [
                   Expanded(
                     child: NeumorphicButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, MainScreen.id);
+                      },
                       style: NeumorphicStyle(color: Colors.white),
                       child: Text(
                         'Get Job',
@@ -99,7 +104,9 @@ class BannerWidget extends StatelessWidget {
                   ),
                   Expanded(
                     child: NeumorphicButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, SellerCategory.id);
+                      },
                       style: NeumorphicStyle(color: Colors.white),
                       child: Text(
                         'Give Job',

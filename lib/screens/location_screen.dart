@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, unnecessary_new, avoid_print, import_of_legacy_library_into_null_safe, unnecessary_null_comparison, prefer_final_fields
+// ignore_for_file: prefer_const_constructors, unnecessary_new, avoid_print, import_of_legacy_library_into_null_safe, unnecessary_null_comparison, prefer_final_fields, prefer_const_constructors_in_immutables
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:csc_picker/csc_picker.dart';
@@ -7,12 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart';
 import 'package:legacy_progress_dialog/legacy_progress_dialog.dart';
 import 'package:location/location.dart';
+
 import 'package:udyog/screens/home.dart';
 import 'package:udyog/screens/main_screen.dart';
 import 'package:udyog/services/firebase_services.dart';
 
 class LocationScreen extends StatefulWidget {
-  const LocationScreen({Key? key}) : super(key: key);
+  LocationScreen({
+    Key? key,
+  }) : super(key: key);
   static const String id = 'location-Screen';
 
   @override
@@ -73,10 +76,12 @@ class _LocationScreenState extends State<LocationScreen> {
       if (document.exists) {
         if (document['address'] != null) {
           //location updated
-          setState(() {
-            _loading = true;
-          });
-          Navigator.pushReplacementNamed(context, MainScreen.id);
+          if (mounted) {
+            setState(() {
+              _loading = true;
+            });
+            return Navigator.pushReplacementNamed(context, MainScreen.id);
+          }
         } else {
           setState(() {
             _loading = false;
@@ -163,7 +168,8 @@ class _LocationScreenState extends State<LocationScreen> {
                               'address': _address
                             }, context).then((value) {
                               progressDialog.dismiss();
-                              Navigator.pushNamed(context, HomeScreen.id);
+                              return Navigator.pushReplacementNamed(
+                                  context, HomeScreen.id);
                             });
                           }
                         });
@@ -279,7 +285,7 @@ class _LocationScreenState extends State<LocationScreen> {
               ),
               _loading
                   ? Column(
-                      children: [
+                      children: const [
                         CircularProgressIndicator(),
                         SizedBox(
                           height: 8,

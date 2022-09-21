@@ -7,10 +7,15 @@ import 'package:geocoder/geocoder.dart';
 import 'package:udyog/screens/home.dart';
 
 class FirebaseService {
+  User? user = FirebaseAuth.instance.currentUser;
+
   CollectionReference users = FirebaseFirestore.instance.collection('users');
   CollectionReference categories =
       FirebaseFirestore.instance.collection('categories');
-  User? user = FirebaseAuth.instance.currentUser;
+  CollectionReference products =
+      FirebaseFirestore.instance.collection('products');
+  CollectionReference chatroom =
+      FirebaseFirestore.instance.collection('chatroom');
 
   Future<void> updateUser(Map<String, dynamic> data, context) {
     return users
@@ -35,5 +40,37 @@ class FirebaseService {
     var first = addresses.first;
 
     return first.addressLine;
+  }
+
+  Future<DocumentSnapshot> getUserData() async {
+    DocumentSnapshot doc = await users.doc(user!.uid).get();
+    return doc;
+  }
+
+  Future<DocumentSnapshot> getSellerData(id) async {
+    DocumentSnapshot doc = await users.doc(id).get();
+    return doc;
+  }
+
+  updateFav(_isLiked, productId,context) {
+    if (_isLiked) {
+      products.doc(productId).update({
+        'favourites': FieldValue.arrayUnion([user!.uid]),
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Added to bookmarks'),
+        ),
+      );
+    } else {
+      products.doc(productId).update({
+        'favourites': FieldValue.arrayRemove([user!.uid]),
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Removed from bookmarks'),
+        ),
+      );
+    }
   }
 }

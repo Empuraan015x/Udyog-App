@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1034322233204",
+    "project_id": "udyog-app",
+    "storage_bucket": "udyog-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034322233204:android:4be4fc2c969751367d0e21",
+        "android_client_info": {
+          "package_name": "com.example.udyog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034322233204-q80ud5o7vlm9b7k5p0jfs7vauppks0ik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.udyog",
+            "certificate_hash": "768d24dbfb6595f33e152a08d7bfde61e00e2498"
+          }
+        },
+        {
+          "client_id": "1034322233204-8hf8anbpeis0rg6hgr8lqvjptr6nsubt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJfaW88JaJ1AxwKAFQrgBmNchnrOwkjOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034322233204-8hf8anbpeis0rg6hgr8lqvjptr6nsubt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
